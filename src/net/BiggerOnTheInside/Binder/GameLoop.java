@@ -58,10 +58,10 @@ public class GameLoop implements UniverseEntity{
         //GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
         /* Enable face culling, basically don't render this face relative to the camera's position. */
-        GL11.glEnable(GL11.GL_CULL_FACE);
+       // GL11.glEnable(GL11.GL_CULL_FACE);
         
         /* Set OpenGL to cull the back face of our spatials. */
-        GL11.glCullFace(GL11.GL_BACK);
+       // GL11.glCullFace(GL11.GL_BACK);
         
         /* Set the matrix mode to projection. */
         GL11.glMatrixMode(GL11.GL_PROJECTION); 
@@ -109,8 +109,6 @@ public class GameLoop implements UniverseEntity{
 	}
 	
 	public void run(){
-		GL11.glTranslatef(0, 0, 0);
-		
 		Mouse.setGrabbed(true);
 		
 		while(this.running && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)){

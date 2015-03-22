@@ -31,7 +31,7 @@ public class World implements UniverseEntity{
 
 	@Override
 	public void init() {
-		c = new Chunk(0, 0, 0);
+		c = new Chunk(0, 1, 1);
 		p = new Player("Kirk", 0, 0);
 	}
 
@@ -45,12 +45,9 @@ public class World implements UniverseEntity{
 
 	@Override
 	public void render() {
-		if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)){
-			dispose();
-		}
-		
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		
+		//Render();
 		c.render();
 		//switchTo3D();
 		//render3D();
@@ -70,4 +67,46 @@ public class World implements UniverseEntity{
 		System.exit(0);
 	}
 
+	private void Render() {
+		// GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+		         //GL11.glLoadIdentity();  
+		                        
+		         GL11.glTranslatef(0f,0.0f,-7f);             
+		        // GL11.glRotatef(45f,0.0f,1.0f,0.0f);               
+		         GL11.glColor3f(0.5f,0.5f,1.0f);  
+		              
+		         GL11.glBegin(GL11.GL_QUADS);    
+		            GL11.glColor3f(1.0f,1.0f,0.0f);           
+		            GL11.glVertex3f( 1.0f, 1.0f,-1.0f);        
+		            GL11.glVertex3f(-1.0f, 1.0f,-1.0f);        
+		            GL11.glVertex3f(-1.0f, 1.0f, 1.0f);
+		            GL11.glVertex3f( 1.0f, 1.0f, 1.0f);  
+		            GL11.glColor3f(1.0f,0.5f,0.0f);            
+		            GL11.glVertex3f( 1.0f,-1.0f, 1.0f);
+		            GL11.glVertex3f(-1.0f,-1.0f, 1.0f);
+		            GL11.glVertex3f(-1.0f,-1.0f,-1.0f);
+		            GL11.glVertex3f( 1.0f,-1.0f,-1.0f);
+		            GL11.glColor3f(1.0f,0.0f,0.0f);
+		            GL11.glVertex3f( 1.0f, 1.0f, 1.0f);
+		            GL11.glVertex3f(-1.0f, 1.0f, 1.0f);
+		            GL11.glVertex3f(-1.0f,-1.0f, 1.0f);
+		            GL11.glVertex3f( 1.0f,-1.0f, 1.0f);
+		            GL11.glColor3f(1.0f,1.0f,0.0f);
+		            GL11.glVertex3f( 1.0f,-1.0f,-1.0f);
+		            GL11.glVertex3f(-1.0f,-1.0f,-1.0f);
+		            GL11.glVertex3f(-1.0f, 1.0f,-1.0f);
+		            GL11.glVertex3f( 1.0f, 1.0f,-1.0f);
+		            GL11.glColor3f(0.0f,0.0f,1.0f);
+		            GL11.glVertex3f(-1.0f, 1.0f, 1.0f);
+		            GL11.glVertex3f(-1.0f, 1.0f,-1.0f);
+		            GL11.glVertex3f(-1.0f,-1.0f,-1.0f);
+		            GL11.glVertex3f(-1.0f,-1.0f, 1.0f);
+		            GL11.glColor3f(1.0f,0.0f,1.0f);
+		            GL11.glVertex3f( 1.0f, 1.0f,-1.0f);
+		            GL11.glVertex3f( 1.0f, 1.0f, 1.0f);
+		            GL11.glVertex3f( 1.0f,-1.0f, 1.0f);
+		            GL11.glVertex3f( 1.0f,-1.0f,-1.0f);
+		        GL11.glEnd();    
+		        GL11.glTranslatef(0, 0, 0);
+		 }
 }

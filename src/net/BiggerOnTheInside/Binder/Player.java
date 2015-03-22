@@ -30,7 +30,7 @@ public class Player{
 	}
 
 	public void update() {
-		PlayerConstants.DELTA_TIME = (int)0.01; //(time - lastTime)/1000.0f;
+		PlayerConstants.DELTA_TIME = (int)1; //(time - lastTime)/1000.0f;
         //distance in mouse movement from the last getDX() call.
 		PlayerConstants.DELTA_X = Mouse.getDX();
         //distance in mouse movement from the last getDY() call.

@@ -7,7 +7,7 @@ package net.BiggerOnTheInside.Binder.engine;
 
 public class PlayerConstants {
     public static final float MOUSE_SENSITIVITY = 0.5f;
-    public static final float MOVEMENT_SPEED = 0.1f;
+    public static final float MOVEMENT_SPEED = 0.01f;
     public static float DELTA_X;
     public static float DELTA_Y;
     public static int DELTA_TIME;

@@ -48,7 +48,7 @@ public class Chunk implements UniverseEntity{
 				for(int z = (int)pos.getZ(); z < sizeZ; z++){
 					blocks[x][y][z] = Block.GRASS_BLOCK.getID();
 					vCoords.put(Shape.createCubeVertices(x, y, z, 1));
-					cCoords.put(Shape.createCubeColors(blocks[x][y][z]));
+					//cCoords.put(Shape.createCubeColors(blocks[x][y][z]));
 				}
 			}
 		}
@@ -66,23 +66,25 @@ public class Chunk implements UniverseEntity{
 		
 		blocks = new byte[sizeX][sizeY][sizeZ];
 	
-		vCoords = BufferUtils.createFloatBuffer(Chunk.CHUNKSIZE * Chunk.CHUNKSIZE * Chunk.CHUNKSIZE * (3 * 6 * 4));
-		cCoords = BufferUtils.createFloatBuffer(Chunk.CHUNKSIZE * Chunk.CHUNKSIZE * Chunk.CHUNKSIZE * (4 * 6 * 4));
+		vCoords = BufferUtils.createFloatBuffer(Chunk.CHUNKSIZE * Chunk.CHUNKSIZE * Chunk.CHUNKSIZE * (4 * 6 * 4));
+		//cCoords = BufferUtils.createFloatBuffer(Chunk.CHUNKSIZE * Chunk.CHUNKSIZE * Chunk.CHUNKSIZE * (4 * 6 * 4));
 		
 		createChunk();
 		
 		vCoords.flip();
-		cCoords.flip();
+		//cCoords.flip();
 		
 		vID = glGenBuffers();
+		glEnableClientState(GL_VERTEX_ARRAY);
 		glBindBuffer(GL_ARRAY_BUFFER, vID);
 		glBufferData(GL_ARRAY_BUFFER, vCoords, GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glDisableClientState(GL_VERTEX_ARRAY);
 		
-		cID = glGenBuffers();
+		/*cID = glGenBuffers();
 		glBindBuffer(GL_ARRAY_BUFFER, cID);
 		glBufferData(GL_ARRAY_BUFFER, cCoords, GL_STATIC_DRAW);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);*/
 	}
 
 	@Override
@@ -100,18 +102,18 @@ public class Chunk implements UniverseEntity{
 
 	@Override
 	public void render() {
+		glEnableClientState(GL_VERTEX_ARRAY);
+		//glEnableClientState(GL_COLOR_ARRAY);
+		
 		glBindBuffer(GL_ARRAY_BUFFER, vID);
 		glVertexPointer(3, GL_FLOAT, 0, 0L);
 		
-		glBindBuffer(GL_ARRAY_BUFFER, cID);
-		glColorPointer(4, GL_FLOAT, 0, 0L);
+		//glBindBuffer(GL_ARRAY_BUFFER, cID);
+		//glColorPointer(4, GL_FLOAT, 0, 0L);
 		
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glEnableClientState(GL_COLOR_ARRAY);
+		glDrawArrays(GL_QUADS, 0, 4 * 6);
 		
-		glDrawArrays(GL_QUADS, 0, Chunk.CHUNKSIZE * Chunk.CHUNKSIZE * Chunk.CHUNKSIZE * (3 * 6 * 4));
-		
-		glDisableClientState(GL_COLOR_ARRAY);
+		//glDisableClientState(GL_COLOR_ARRAY);
 		glDisableClientState(GL_VERTEX_ARRAY);
 	}
 
